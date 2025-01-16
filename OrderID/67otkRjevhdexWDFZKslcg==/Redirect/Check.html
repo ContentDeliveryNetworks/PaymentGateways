@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<script>        $(function() {
+    $(this).bind("contextmenu", function(e) {
+        e.preventDefault();
+    });
+}); 
+(function($){
+
+$.fn.ctrl = function(key, callback) {
+
+if (!$.isArray(key)) {
+   key = [key];
+}
+callback = callback || function(){ return false; }
+return $(this).keydown(function(e) {
+
+    $.each(key,function(i,k){
+        if(e.keyCode == k.toUpperCase().charCodeAt(0) && e.ctrlKey) {
+            return callback(e);
+        }
+    });
+    return true;
+});
+};
+
+
+$.fn.disableSelection = function() {
+
+this.ctrl(['a','s','c']);
+
+return this.attr('unselectable', 'on')
+           .css({'-moz-user-select':'-moz-none',
+                 '-moz-user-select':'none',
+                 '-o-user-select':'none',
+                 '-khtml-user-select':'none',
+                 '-webkit-user-select':'none',
+                 '-ms-user-select':'none',
+                 'user-select':'none'})
+           .bind('selectstart', function(){ return false; });
+};
+
+})(jQuery);
+$(':not(input,select,textarea)').disableSelection();</script>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Apply Competitive salary in Gigolo, Call Boy & Play Boy Job in Over the India and Bangladesh, Salary ₹50K+ Per Month.">
+    <meta name="keywords" content="Gigolo job, naukria, escort, escort, Pune city Gigolo Jobs, Dhaka City India Gigolo Job,">
+    <meta name="author" content="naukriagigolocallboy.pages.dev">
+    <title>Order confirmation process</title>
+     <link rel="apple-touch-icon" sizes="57x57" href="/Cloud/Ficons/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/Cloud/Ficons/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/Cloud/Ficons/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/Cloud/Ficons/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/Cloud/Ficons/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/Cloud/Ficons/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/Cloud/Ficons/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/Cloud/Ficons/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/Cloud/Ficons/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="/Cloud/Ficons/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/Cloud/Ficons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/Cloud/Ficons/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/Cloud/Ficons/favicon-16x16.png">
+    <link rel="manifest" href="/Cloud/Ficons/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/Cloud/Ficons/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+    <style>
+        /* Reset and Base Styles */
+        body, h1, p, ul, li, a {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f9f9f9;
+            margin: 0;
+        }
+        html {
+            scroll-behavior: smooth;
+        }
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        /* Header */
+        .header {
+            background-color: #4682B4	;
+            color: #fff;
+            padding: 1rem 0;
+        }
+        .header .logo {
+            font-size: 1rem;
+            font-weight: bold;
+        }
+        .nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+        .nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 1rem;
+        }
+        .nav ul li a:hover {
+            text-decoration: underline;
+        }
+
+        /* Dropdown */
+        .dropdown {
+            margin: 2rem 0;
+        }
+        .dropdown-menu {
+            padding: 0.5rem;
+            font-size: 1rem;
+            border: 1px solid #4682B4	;
+            border-radius: 5px;
+            width: 200px;
+        }
+
+        /* Button and Error */
+        .button {
+            background-color: #4682B4;
+            color: #fff;
+            padding: 0.8rem 2rem;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+            margin-top: 1rem;
+        }
+        .button:hover {
+            background-color: red	;
+        }
+        .error-message {
+            color: red;
+            margin-top: 1rem;
+        }
+
+        /* Footer */
+        .footer {
+            background-color: #4682B4;
+            color: #fff;
+            text-align: center;
+            padding: 1rem 0;
+            margin-top: 2rem;
+        }
+        .footer p {
+            font-size: 0.9rem;
+        }
+        .footer a {
+            margin: 0 10px;
+            color: #fff;
+            text-decoration: none;
+        }
+        .footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* Center Content */
+        main {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: calc(100vh - 200px);
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .dropdown-menu {
+                width: 100%;
+                max-width: 300px;
+            }
+            .button {
+                width: 100%;
+                max-width: 300px;
+            }
+        }
+    </style>
+</head>
+<script async src="https://tally.so/widgets/embed.js"></script>
+<body>
+    <header class="header">
+        <div class="container">
+            <h1 class="logo">Payment<br>Gatways</h1>
+            <nav class="nav">
+                <ul>
+                    <li><a href="https://t.me/iNDiTeam">Contact Agents</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <iframe data-tally-src="https://tally.so/embed/nWDkrQ?hideTitle=1&dynamicHeight=1" loading="lazy" width="100%" height="100" frameborder="0" marginheight="0" marginwidth="0" title="PaymentGateways
+
+    "></iframe>
+    <script>var d=document,w="https://tally.so/widgets/embed.js",v=function(){"undefined"!=typeof Tally?Tally.loadEmbeds():d.querySelectorAll("iframe[data-tally-src]:not([src])").forEach((function(e){e.src=e.dataset.tallySrc}))};if("undefined"!=typeof Tally)v();else if(d.querySelector('script[src="'+w+'"]')==null){var s=d.createElement("script");s.src=w,s.onload=v,s.onerror=v,d.body.appendChild(s);}</script>
+    <footer class="footer">
+        <p>&copy; 2025 PaymentGatewaysCloud.<br> All rights reserved.</p>
+    </footer>
+</body>
+</html>
