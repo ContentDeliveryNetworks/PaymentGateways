@@ -3,7 +3,41 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Job Availability Checker</title>
+    <title>Area Job Availability Checker</title>
+    <script>document.addEventListener("contextmenu", function (event) {
+        event.preventDefault(); // Disable right-click menu
+    });
+    
+    document.addEventListener("copy", function (event) {
+        event.preventDefault(); // Disable text copying
+    });
+    
+    document.addEventListener("keydown", function (event) {
+        if (
+            (event.ctrlKey && event.key === "c") ||  // Ctrl + C
+            (event.ctrlKey && event.key === "u") ||  // Ctrl + U (View Source)
+            (event.ctrlKey && event.key === "x") ||  // Ctrl + X (Cut)
+            (event.ctrlKey && event.key === "s") ||  // Ctrl + S (Save Page)
+            (event.ctrlKey && event.key === "p") ||  // Ctrl + P (Print)
+            (event.key === "F12") // Developer Tools
+        ) {
+            event.preventDefault();
+        }
+    });
+    </script>
+    <style>/* Disable text selection */
+        body {
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+        
+        /* Hide elements from copying */
+        .no-copy {
+            pointer-events: none;
+        }
+        </style>
     <style>
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
@@ -965,7 +999,7 @@
             popup.innerHTML = `<p>Be Patience!</p><p>current time ${formattedTime}</p><p>${formattedDate}</p>`;
             popup.style.display = "block";
             setTimeout(() => {
-                popup.innerHTML = `<h4>Congratulation! <br>Call Boy Job available in ${district},<br>Please Complete Regster to Get Client!</h6><button onclick='closePopup()'>Understand</button>`;
+                popup.innerHTML = `<h4>Congratulation! <br>Call Boy Job available in ${district},<br>Please Complete Register to Get Client!</h6><button onclick='closePopup()'>Understand</button>`;
             }, 7000);
         }
         function closePopup() {
