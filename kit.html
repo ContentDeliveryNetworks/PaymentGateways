@@ -79,29 +79,42 @@
             }
         }
     </style>
-     <div class="counter" id="counter">0</div>
-<script>
-    let count = 0;
-    const targetCount = 787;
-    const counterElement = document.getElementById('counter');
+     <div class="counter"  id="counter">0</div>
+     <script>
+        let count = 0;
+        const targetCount = 787;
+        const duration = 2000; // Total animation duration in milliseconds
+        const counterElement = document.getElementById('counter');
     
-    function updateCounter() {
-        counterElement.textContent = count + " District Available!";
-    }
-    
-    function startCounter() {
-        const interval = setInterval(() => {
-            if (count >= targetCount) {
-                clearInterval(interval);
-            } else {
-                count++;
-                updateCounter();
+        function updateCounter() {
+            if (counterElement) {
+                counterElement.textContent = `We are on ${count}+ Districts in India!🇮🇳💙`;
             }
-        }, 10);
-    }
+        }
     
-    window.onload = startCounter;
-</script>
+        function animateCounter(startTime) {
+            const elapsedTime = Date.now() - startTime;
+            const progress = Math.min(elapsedTime / duration, 1);
+            count = Math.floor(progress * targetCount);
+    
+            updateCounter();
+    
+            if (progress < 1) {
+                requestAnimationFrame(() => animateCounter(startTime));
+            }
+        }
+    
+        function startCounter() {
+            if (counterElement) {
+                requestAnimationFrame(() => animateCounter(Date.now()));
+            }
+        }
+    
+        window.onload = startCounter;
+    </script>
+    
+    
+    
     <p class="center">(Note) You can only see this page in the demo section,<br>this page will not exist if you log in to a real account</p> 
     <script>
         const stateDistricts = {
