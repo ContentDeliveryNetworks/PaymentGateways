@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Dropdown</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f4f4f4;
+            padding: 20px;
+        }
+        .dropdown {
+            width: 100%;
+            max-width: 300px;
+            margin-bottom: 20px;
+        }
+        select, button {
+            width: 100%;
+            padding: 12px;
+            font-size: 16px;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            background-color: #fff;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        select:focus, button:hover {
+            background-color: #e0e0e0;
+        }
+        #districts, #confirmBtn {
+            display: none;
+        }
+        .popup {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0.8);
+            background: rgba(255, 255, 255, 0.95);
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            display: none;
+            animation: fadeIn 0.5s ease forwards;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translate(-50%, -50%) scale(0.8); }
+            to { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+        }
+    </style>
+    <script>
+        const stateDistricts = {
+            "Andhra Pradesh": ["Anantapur", "Chittoor", "East Godavari"],
+            "Arunachal Pradesh": ["Tawang", "Papum Pare", "Lohit"],
+            "Assam": ["Kamrup", "Dibrugarh", "Tinsukia"],
+            "Bihar": ["Patna", "Gaya", "Bhagalpur"],
+            "Maharashtra": ["Mumbai", "Pune", "Nagpur"]
+        };
+        function updateDistricts() {
+            let stateSelect = document.getElementById("state");
+            let districtSelect = document.getElementById("district");
+            let selectedState = stateSelect.value;
+            districtSelect.innerHTML = "<option value=''>Select a District</option>";
+            
+            if (selectedState) {
+                document.getElementById("districts").style.display = "block";
+                stateDistricts[selectedState].forEach(district => {
+                    let option = document.createElement("option");
+                    option.value = district;
+                    option.textContent = district;
+                    districtSelect.appendChild(option);
+                });
+            } else {
+                document.getElementById("districts").style.display = "none";
+            }
+        }
+        function showButton() {
+            document.getElementById("confirmBtn").style.display = "block";
+        }
+        function showPopup() {
+            let district = document.getElementById("district").value;
+            if (!district) return;
+            let now = new Date();
+            let formattedTime = now.getHours() + ":" + now.getMinutes();
+            let formattedDate = now.getDate() + " " + now.toLocaleString('en-us', { month: 'short' }) + " " + (now.getFullYear() % 100);
+            
+            let popup = document.getElementById("popup");
+            popup.innerHTML = `<p>Checking please...</p><p>Checking time - ${formattedTime}</p><p>${formattedDate}</p>`;
+            popup.style.display = "block";
+            setTimeout(() => {
+                popup.innerHTML = `<p>Congrats! Job available in ${district}!</p><button onclick='closePopup()'>Understand</button>`;
+            }, 7000);
+        }
+        function closePopup() {
+            document.getElementById("popup").style.display = "none";
+        }
+    </script>
+</head>
+<body>
+    <div class="dropdown">
+        <select id="state" onchange="updateDistricts()">
+            <option value="">Select a State</option>
+            <option value="Andhra Pradesh">Andhra Pradesh</option>
+            <option value="Arunachal Pradesh">Arunachal Pradesh</option>
+            <option value="Assam">Assam</option>
+            <option value="Bihar">Bihar</option>
+            <option value="Maharashtra">Maharashtra</option>
+        </select>
+    </div>
+    <div class="dropdown" id="districts">
+        <select id="district" onchange="showButton()">
+            <option value="">Select a District</option>
+        </select>
+    </div>
+    <button id="confirmBtn" onclick="showPopup()">Check Job Availability</button>
+    <div id="popup" class="popup"></div>
+</body>
+</html>
